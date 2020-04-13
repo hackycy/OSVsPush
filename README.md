@@ -1,5 +1,7 @@
 # 简介
 
+![](https://img.shields.io/badge/release-v1.0.8-green)
+
 更方便的将各个rom厂商自己的推送服务进行集成,并统一管理,使用前还是需要熟悉各个平台的相关文档
 
 # 如何集成
@@ -7,7 +9,16 @@
 gradle引入
 
 ``` gradle
-implementation 'com.github.hackycy:SystemPush:1.0.7'
+allprojects {
+    repositories {
+        ...
+            maven { url 'https://jitpack.io' }
+        }
+}
+```
+
+``` gradle
+implementation 'com.github.hackycy:OSVsPush:${版本号}'
 ```
 
 由于库中并不包含各大推送的sdk，请自行在github的systempush的libs中的厂商推送sdk下载引入到自己的项目中。
