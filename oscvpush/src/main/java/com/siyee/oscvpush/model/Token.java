@@ -29,4 +29,11 @@ public class Token {
         return token;
     }
 
+    @Override
+    public String toString() {
+        return "Token{" +
+                "regId='" + regId + '\'' +
+                ", target=" + target +
+                '}';
+    }
 }
