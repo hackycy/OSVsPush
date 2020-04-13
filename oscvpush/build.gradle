@@ -1,0 +1,74 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 12
+        versionName "1.0.7"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    compileOnly fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    compileOnly 'com.huawei.hms:push:4.0.2.300'
+}
+
+// publish
+group='com.github.hackycy'
+
+// 并且如果有用到lib依赖库，需要在Item/Library Module 的build.gradle中引用的库时加入如下代码。
+//repositories {
+//    flatDir {
+//        dirs 'libs' //this way we can find the .aar file in libs folder
+//    }
+//}
+
+//以下为配置library注释在打包jar后保留
+// 打包源码jar
+//task sourcesJar(type: Jar) {
+//    from android.sourceSets.main.java.srcDirs
+//    classifier = 'sources'
+//}
+//
+//task javadoc(type: Javadoc) {
+//    failOnError false
+//    source = android.sourceSets.main.java.sourceFiles
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//    classpath += configurations.compile
+//}
+
+// 打包文档jar
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+//
+//artifacts {
+//    archives sourcesJar
+//    archives javadocJar
+//}
+//
+//javadoc {
+//    options {
+//        //如果你的项目里面有中文注释的话，必须将格式设置为UTF-8，不然会出现乱码
+//        encoding "UTF-8"
+//        charSet 'UTF-8'
+//        author true
+//        version true
+//    }
+//}
