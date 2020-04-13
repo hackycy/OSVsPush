@@ -22,7 +22,7 @@ public final class MetaDataUtils {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        return value;
+        return value.trim();
     }
 
 }
