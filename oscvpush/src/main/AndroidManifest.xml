@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.siyee.oscvpush">
+    package="com.siyee.demo">
 
     <!--小米推送服务权限-->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -70,7 +70,7 @@
         <!-- 自定义小米BroadcastReceiver -->
         <receiver
             android:exported="true"
-            android:name="com.siyee.oscvpush.mi.MiPushMessageReceiverImpl">
+            android:name="com.siyee.demo.mi.MiPushMessageReceiverImpl">
             <!--这里com.xiaomi.mipushdemo.DemoMessageRreceiver改成app中定义的完整类名-->
             <intent-filter>
                 <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE" />
@@ -86,7 +86,7 @@
 
         <!-- OPPO推送服务注册开始 -->
         <service
-            android:name="com.siyee.oscvpush.oppo.CompatibleDataMessageCallbackServiceImpl"
+            android:name="com.siyee.demo.oppo.CompatibleDataMessageCallbackServiceImpl"
             android:permission="com.coloros.mcs.permission.SEND_MCS_MESSAGE">
             <intent-filter>
                 <action android:name="com.coloros.mcs.action.RECEIVE_MCS_MESSAGE"/>
@@ -94,7 +94,7 @@
         </service>
 
         <service
-            android:name="com.siyee.oscvpush.oppo.DataMessageCallbackServiceImpl"
+            android:name="com.siyee.demo.oppo.DataMessageCallbackServiceImpl"
             android:permission="com.heytap.mcs.permission.SEND_MCS_MESSAGE">
             <intent-filter>
                 <action android:name="com.heytap.mcs.action.RECEIVE_MCS_MESSAGE"/>
@@ -110,7 +110,7 @@
             android:exported="true"/>
 
         <!-- push应用定义消息receiver声明 -->
-        <receiver   android:name="com.siyee.oscvpush.vivo.VivoPushMessageReceiverImpl" >
+        <receiver   android:name="com.siyee.demo.vivo.VivoPushMessageReceiverImpl" >
             <intent-filter>
                 <!-- 接收push消息 -->
                 <action android:name="com.vivo.pushclient.action.RECEIVE" />
@@ -120,7 +120,7 @@
 
         <!-- 华为推送服务注册开始 -->
         <service
-            android:name="com.siyee.oscvpush.huawei.HmsMessageServiceImpl"
+            android:name="com.siyee.demo.huawei.HmsMessageServiceImpl"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
@@ -130,7 +130,7 @@
 
         <!-- 魅族推送服务注册开始 -->
         <!-- push 应用定义消息 receiver 声明 -->
-        <receiver android:name="com.siyee.oscvpush.meizu.MzPushMessageReceiverImpl">
+        <receiver android:name="com.siyee.demo.meizu.MzPushMessageReceiverImpl">
             <intent-filter>
                 <!-- 接收 push 消息 -->
                 <action android:name="com.meizu.flyme.push.intent.MESSAGE" />

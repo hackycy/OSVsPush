@@ -79,6 +79,14 @@ buildscript {
 	android:name="com.heytap.push.app_secret"
 	android:value="**********" />
 
+<!-- 魅族 appid 和 appkey -->
+<meta-data
+	android:name="com.flyme.push.app_id"
+	android:value="xxxxxxx" />
+<meta-data
+	android:name="com.flyme.push.app_key"
+	android:value="xxxxxx" />
+
 <!-- vivo appid和appkey -->
 <meta-data
 	android:name="com.vivo.push.api_key"
@@ -88,7 +96,7 @@ buildscript {
 	android:value="**********"/>
 ```
 
-> 请在纯数字字符串开头加上"\ "(反斜杠+空格)这样系统会自动读取为字符串而不是其他格式，否则读取时会出现异常
+> 请在纯数字字符串开头加上"\ "(反斜杠+空格)这样系统会自动读取为字符串而不是其他格式，否则读取时会出现异常，注意：vivo的不需要加
 >
 
 ## 初始化
@@ -106,6 +114,7 @@ public class App extends Application {
      * 注册各大厂商推送服务
      */
     private void initPush() {
+        // 注册回调
         PushAdapter adapter = new PushAdapter(){
 
             @Override
@@ -118,10 +127,12 @@ public class App extends Application {
                 LogUtils.e(regId);
             }
         };
+        // 厂商推送注册，sdk会自动判断是否需要注册。
         HWPushRegister.getInstance(this).register(adapter);
         MiPushRegister.getInstance(this).register(adapter);
         OppoPushRegister.getInstance(this).register(adapter);
         VivoPushRegister.getInstance(this).register(adapter);
+        MZPushRegister.getInstance(this).register(adapter);
     }
 
 }
