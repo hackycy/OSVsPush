@@ -17,7 +17,6 @@ public class VivoPushMessageReceiverImpl extends OpenClientPushMessageReceiver {
      * 当通知被点击时回调此方法
      * @param context 应用上下文
      * @param upsNotificationMessage 通知详情，详细信息见API接入文档
-
      */
     @Override
     public void onNotificationMessageClicked(Context context, UPSNotificationMessage upsNotificationMessage) {
