@@ -1,2 +1,3 @@
 rootProject.name='Oscv'
-include ':demo', ':oscvpush'
+include ':oscvpush'
+include ':demo'

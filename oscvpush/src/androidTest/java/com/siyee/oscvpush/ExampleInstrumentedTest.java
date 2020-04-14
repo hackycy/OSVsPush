@@ -1,4 +1,4 @@
-package com.siyee.demo;
+package com.siyee.oscvpush;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("cn.baicaoshijia.demo.test", appContext.getPackageName());
+        assertEquals("com.siyee.systempush.test", appContext.getPackageName());
     }
 }
