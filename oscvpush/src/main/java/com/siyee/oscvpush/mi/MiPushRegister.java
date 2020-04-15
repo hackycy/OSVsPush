@@ -21,23 +21,13 @@ import java.util.List;
 
 /**
  * 小米推送服务注册
- * 需要在清单文件Application中注册小米应用AppID，appkey
- * <pre>
- * {@code
- *  <meta-data
- *     android:name="com.xiaomi.push.app_id"
- *     android:value="appid=xxxxxx" />
- *  <meta-data
- *     android:name="com.xiaomi.push.app_key"
- *     android:value="appkey=xxxxxx" />
- * }
  * </pre>
  */
 public class MiPushRegister implements IPushManager {
 
-    public static final String METADATA_KEY_APPID = "com.xiaomi.push.app_id";
+//    public static final String METADATA_KEY_APPID = "com.xiaomi.push.app_id";
 
-    public static final String METADATA_KEY_APPKEY = "com.xiaomi.push.app_key";
+//    public static final String METADATA_KEY_APPKEY = "com.xiaomi.push.app_key";
 
     @SuppressLint("StaticFieldLeak")
     private static Context mContext;
@@ -81,16 +71,15 @@ public class MiPushRegister implements IPushManager {
 
     /**
      * 小米推送服务注册
+     * @param appId 小米应用id
+     * @param appKey 小米应用key
      * @param callback 回调
      */
-    @Override
-    public void register(IPushCallback callback) {
+    public void register(String appId, String appKey, IPushCallback callback) {
         if (isSupportPush()) {
             LogUtils.e("XIAOMI is Support Push");
             MiPushRegister.setPushCallback(callback);
-            MiPushClient.registerPush(mContext,
-                    MetaDataUtils.getMetaDataInApp(mContext, METADATA_KEY_APPID),
-                    MetaDataUtils.getMetaDataInApp(mContext, METADATA_KEY_APPKEY));
+            MiPushClient.registerPush(mContext, appId, appKey);
         }
     }
 

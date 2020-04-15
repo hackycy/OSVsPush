@@ -11,29 +11,21 @@ import com.siyee.oscvpush.base.PushAdapter;
 import com.siyee.oscvpush.model.Target;
 import com.siyee.oscvpush.model.Token;
 import com.siyee.oscvpush.util.LogUtils;
-import com.siyee.oscvpush.util.MetaDataUtils;
 import com.siyee.oscvpush.util.NullUtils;
 import com.siyee.oscvpush.util.RomUtils;
 
 /**
  * 魅族推送服务注册
- * 需要在清单文件Application中注册魅族应用AppID，appkey
- * <pre>
- * {@code
- *  <meta-data
- *     android:name="com.flyme.push.app_id"
- *     android:value="appid=xxxxxx" />
- *  <meta-data
- *     android:name="com.flyme.push.app_key"
- *     android:value="appkey=xxxxxx" />
- * }
- * </pre>
  */
 public class MZPushRegister implements IPushManager {
 
-    public static final String METADATA_KEY_APPID = "com.flyme.push.app_id";
+//    public static final String METADATA_KEY_APPID = "com.flyme.push.app_id";
 
-    public static final String METADATA_KEY_APPKEY = "com.flyme.push.app_key";
+//    public static final String METADATA_KEY_APPKEY = "com.flyme.push.app_key";
+
+    private static String mzAppid;
+
+    private static String mzAppKey;
 
     @SuppressLint("StaticFieldLeak")
     private static Context mContext;
@@ -76,18 +68,31 @@ public class MZPushRegister implements IPushManager {
     }
 
     private String getMZAppId() {
-        return MetaDataUtils.getMetaDataInApp(mContext, METADATA_KEY_APPID);
+        if (NullUtils.checkNull(mzAppid)) {
+            throw new NullPointerException("Meizu appId must not null");
+        }
+        return mzAppid;
     }
 
     private String getMZAppKey() {
-        return MetaDataUtils.getMetaDataInApp(mContext, METADATA_KEY_APPKEY);
+        if (NullUtils.checkNull(mzAppKey)) {
+            throw new NullPointerException("Meizu appKey must not null");
+        }
+        return mzAppKey;
     }
 
-    @Override
-    public void register(IPushCallback callback) {
+    /**
+     * 魅族推送服务注册
+     * @param appId 魅族appid
+     * @param appKey 魅族appkey
+     * @param callback 回调
+     */
+    public void register(String appId, String appKey, IPushCallback callback) {
         if (isSupportPush()) {
             LogUtils.e("MEIZU is Support Push");
             MZPushRegister.setPushCallback(callback);
+            mzAppid = appId;
+            mzAppKey = appKey;
             PushManager.register(mContext, getMZAppId(), getMZAppKey());
         }
     }

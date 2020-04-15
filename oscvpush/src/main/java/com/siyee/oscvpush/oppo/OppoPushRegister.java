@@ -12,28 +12,16 @@ import com.siyee.oscvpush.base.PushAdapter;
 import com.siyee.oscvpush.model.Target;
 import com.siyee.oscvpush.model.Token;
 import com.siyee.oscvpush.util.LogUtils;
-import com.siyee.oscvpush.util.MetaDataUtils;
 import com.siyee.oscvpush.util.NullUtils;
 
 /**
  * OPPO推送服务注册
- * 需要在清单文件Application中注册Oppo应用appkey，appsecret
- * <pre>
- * {@code
- *  <meta-data
- *     android:name="com.heytap.push.app_key"
- *     android:value="appid=xxxxxx" />
- *  <meta-data
- *     android:name="com.heytap.push.app_secret"
- *     android:value="appkey=xxxxxx" />
- * }
- * </pre>
  */
 public class OppoPushRegister implements IPushManager {
 
-    public static final String METADATA_KEY_APPKEY = "com.heytap.push.app_key";
+//    public static final String METADATA_KEY_APPKEY = "com.heytap.push.app_key";
 
-    public static final String METADATA_KEY_APPSECRET = "com.heytap.push.app_secret";
+//    public static final String METADATA_KEY_APPSECRET = "com.heytap.push.app_secret";
 
     @SuppressLint("StaticFieldLeak")
     private static Context mContext;
@@ -77,16 +65,16 @@ public class OppoPushRegister implements IPushManager {
 
 
     /**
-     * 小米推送服务注册
+     * Oppo推送服务注册
+     * @param appkey oppo应用key
+     * @param appsecret oppo应用secret
      * @param callback 回调
      */
-    @Override
-    public void register(final IPushCallback callback) {
+    public void register(String appkey, String appsecret, final IPushCallback callback) {
         if (isSupportPush()) {
             LogUtils.e("OPPO is Support Push");
             OppoPushRegister.setPushCallback(callback);
-            HeytapPushManager.register(mContext, MetaDataUtils.getMetaDataInApp(mContext, METADATA_KEY_APPKEY),
-                    MetaDataUtils.getMetaDataInApp(mContext, METADATA_KEY_APPSECRET), null);
+            HeytapPushManager.register(mContext, appkey, appsecret, null);
             HeytapPushManager.setPushCallback(new ICallBackResultService() {
                 @Override
                 public void onRegister(int i, String s) {

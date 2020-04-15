@@ -7,8 +7,9 @@ public interface IPushManager {
 
     /**
      * 注册推送服务
+     * 由于各大推送服务注册条件不一，又子类自定义，无抽象
      */
-    void register(IPushCallback callback);
+//    void register(IPushCallback callback);
 
     /**
      * 解注册推送服务

@@ -76,11 +76,18 @@ public class HWPushRegister implements IPushManager {
         return mInstance;
     }
 
+    private String getAppId() {
+        String orginAppId = MetaDataUtils.getMetaDataInApp(mContext, METADATA_KEY_APPID);
+        if (NullUtils.checkNull(orginAppId)) {
+            throw new NullPointerException("huawei appid must not null");
+        }
+        return orginAppId.replace("appid=", "");
+    }
+
     /**
      * 华为推送服务注册
      * @param callback
      */
-    @Override
     public void register(IPushCallback callback) {
         if (isSupportPush()) {
             LogUtils.e("HUAWEI is Support Push");
@@ -91,7 +98,7 @@ public class HWPushRegister implements IPushManager {
                 @Override
                 public void run() {
                     try {
-                        HmsInstanceId.getInstance(mContext).getToken(MetaDataUtils.getMetaDataInApp(mContext, METADATA_KEY_APPID), HCM);
+                        HmsInstanceId.getInstance(mContext).getToken(getAppId(), HCM);
                     } catch (ApiException e) {
                         LogUtils.e(e.getMessage());
                     }

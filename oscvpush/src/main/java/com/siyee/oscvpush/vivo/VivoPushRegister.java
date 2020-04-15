@@ -77,7 +77,6 @@ public class VivoPushRegister implements IPushManager {
      * vivo推送服务注册
      * @param callback 回调
      */
-    @Override
     public void register(IPushCallback callback) {
         if (isSupportPush()) {
             LogUtils.e("VIVO is Support Push");
