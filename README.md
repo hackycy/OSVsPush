@@ -61,31 +61,7 @@ buildscript {
 <!-- 华为appid -->
 <meta-data
 	android:name="com.huawei.push.app_id"
-	android:value="**********" />
-
-<!-- 小米appid和appkey -->
-<meta-data
-	android:name="com.xiaomi.push.app_id"
-	android:value="**********" />
-<meta-data
-	android:name="com.xiaomi.push.app_key"
-	android:value="**********" />
-
-<!-- oppo appid和appsecret -->
-<meta-data
-	android:name="com.heytap.push.app_key"
-	android:value="**********" />
-<meta-data
-	android:name="com.heytap.push.app_secret"
-	android:value="**********" />
-
-<!-- 魅族 appid 和 appkey -->
-<meta-data
-	android:name="com.flyme.push.app_id"
-	android:value="xxxxxxx" />
-<meta-data
-	android:name="com.flyme.push.app_key"
-	android:value="xxxxxx" />
+	android:value="appid=********" />
 
 <!-- vivo appid和appkey -->
 <meta-data
@@ -96,8 +72,7 @@ buildscript {
 	android:value="**********"/>
 ```
 
-> 请在纯数字字符串开头加上"\ "(反斜杠+空格)这样系统会自动读取为字符串而不是其他格式，否则读取时会出现异常，注意：vivo的不需要加
->
+> 将*号填写为实际应用的id等
 
 ## 初始化
 
@@ -129,10 +104,10 @@ public class App extends Application {
         };
         // 厂商推送注册，sdk会自动判断是否需要注册。
         HWPushRegister.getInstance(this).register(adapter);
-        MiPushRegister.getInstance(this).register(adapter);
-        OppoPushRegister.getInstance(this).register(adapter);
+        MiPushRegister.getInstance(this).register("appid", "appkey", adapter);
+        OppoPushRegister.getInstance(this).register("appkey", "appsecret", adapter);
         VivoPushRegister.getInstance(this).register(adapter);
-        MZPushRegister.getInstance(this).register(adapter);
+        MZPushRegister.getInstance(this).register("appid", "appkey", adapter);
     }
 
 }
