@@ -1,6 +1,6 @@
 # 简介
 
-![](https://img.shields.io/badge/release-v1.0.8-green)
+![](https://img.shields.io/badge/release-v1.0.9-green)
 
 更方便的将各个rom厂商自己的推送服务进行集成,并统一管理,使用前还是需要熟悉各个平台的相关文档
 
