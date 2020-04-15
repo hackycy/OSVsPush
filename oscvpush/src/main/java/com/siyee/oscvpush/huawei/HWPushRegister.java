@@ -80,6 +80,7 @@ public class HWPushRegister implements IPushManager {
      * 华为推送服务注册
      * @param callback
      */
+    @Override
     public void register(IPushCallback callback) {
         if (isSupportPush()) {
             LogUtils.e("HUAWEI is Support Push");
