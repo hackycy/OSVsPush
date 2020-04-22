@@ -98,6 +98,10 @@ public class HWPushRegister implements IPushManager {
                 @Override
                 public void run() {
                     try {
+                        // EMUI10.0及以上版本的华为设备上，getToken接口直接返回token。
+                        // 如果当次调用失败Push会缓存申请，之后会自动重试申请，成功后则以onNewToken接口返回。
+                        // 低于EMUI10.0的华为设备上，getToken接口如果返回为空，确保Push服务开通的情况下，结果后续以onNewToken接口返回。
+                        // 服务端识别token过期后刷新token，以onNewToken接口返回。 所以HmsMessageServiceImpl回调中的也属于onRegister回调
                         String token = HmsInstanceId.getInstance(mContext).getToken(getAppId(), HCM);
                         if (NullUtils.checkNull(token)) {
                             HWPushRegister.getPushCallback().onRegister(PushConstants.UNKNOWN_CODE, null);
