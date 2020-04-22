@@ -85,7 +85,7 @@ public class HWPushRegister implements IPushManager {
     }
 
     /**
-     * 华为推送服务注册
+     * 华为推送服务注册, 有可能会回调两次onRegister
      * @param callback
      */
     public void register(IPushCallback callback) {
@@ -98,9 +98,16 @@ public class HWPushRegister implements IPushManager {
                 @Override
                 public void run() {
                     try {
-                        HmsInstanceId.getInstance(mContext).getToken(getAppId(), HCM);
+                        String token = HmsInstanceId.getInstance(mContext).getToken(getAppId(), HCM);
+                        if (NullUtils.checkNull(token)) {
+                            HWPushRegister.getPushCallback().onRegister(PushConstants.UNKNOWN_CODE, null);
+                            return;
+                        }
+                        LogUtils.e(token);
+                        HWPushRegister.getPushCallback().onRegister(PushConstants.SUCCESS_CODE, Token.buildToken(Target.HUAWEI, token));
                     } catch (ApiException e) {
                         LogUtils.e(e.getMessage());
+                        HWPushRegister.getPushCallback().onRegister(PushConstants.UNKNOWN_CODE, null);
                     }
                 }
             }.start();
@@ -109,7 +116,18 @@ public class HWPushRegister implements IPushManager {
 
     @Override
     public void unregister() {
-
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    HmsInstanceId.getInstance(mContext).deleteToken(getAppId(), HCM);
+                    HWPushRegister.getPushCallback().onUnRegister(PushConstants.SUCCESS_CODE);
+                } catch (ApiException e) {
+                    LogUtils.e(e.getMessage());
+                    HWPushRegister.getPushCallback().onUnRegister(PushConstants.UNKNOWN_CODE);
+                }
+            }
+        }).start();
     }
 
     @Override
