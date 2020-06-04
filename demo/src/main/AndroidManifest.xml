@@ -3,6 +3,7 @@
     package="com.siyee.demo">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,6 +16,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 华为appid -->
+        <meta-data
+            android:name="com.huawei.push.app_id"
+            android:value="appid=********" />
+
+        <!-- vivo appid和appkey -->
+        <meta-data
+            android:name="com.vivo.push.api_key"
+            android:value="**********"/>
+        <meta-data
+            android:name="com.vivo.push.app_id"
+            android:value="**********"/>
+
     </application>
 
 </manifest>

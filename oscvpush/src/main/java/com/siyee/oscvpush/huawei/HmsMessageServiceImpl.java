@@ -96,6 +96,6 @@ public class HmsMessageServiceImpl extends HmsMessageService {
             message.setTitle(notification.getTitle());
             message.setMessage(notification.getBody());
         }
-        HWPushRegister.getPushCallback().onMessageThrough(message);
+//        HWPushRegister.getPushCallback().onMessageThrough(message);
     }
 }

@@ -27,7 +27,7 @@ public class VivoPushMessageReceiverImpl extends OpenClientPushMessageReceiver {
         message.setMessage(upsNotificationMessage.getContent());
         message.setExtra(upsNotificationMessage.getParams());
         message.setTitle(upsNotificationMessage.getTitle());
-        VivoPushRegister.getPushCallback().onMessageClicked(message);
+//        VivoPushRegister.getPushCallback().onMessageClicked(message);
     }
 
     /***
