@@ -34,20 +34,18 @@ implementation 'com.huawei.hms:push:4.0.2.300'
 > ``` gradle
 > allprojects {
 >     repositories {
->         google()
->         jcenter()
+>         ...
 >         maven {url 'http://developer.huawei.com/repo/'}
 >     }
 > }
 > ```
 >
-> 在buildscript ->repositories里面配置HMS SDK的maven仓地址。
+> 在`buildscript ->repositories`里面配置`HMS SDK`的maven仓地址。
 >
 > ``` gradle
 > buildscript {
 >     repositories {
->         google()
->         jcenter()
+>         ...
 >         maven {url 'http://developer.huawei.com/repo/'}
 >     }
 > }
