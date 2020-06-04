@@ -56,7 +56,7 @@ public class MiPushMessageReceiverImpl extends PushMessageReceiver {
     public void onReceivePassThroughMessage(Context context, MiPushMessage miPushMessage) {
         LogUtils.e("onReceivePassThroughMessage : " + miPushMessage.toString());
         final Message message = buildMessage(miPushMessage);
-        MiPushRegister.getPushCallback().onMessageThrough(message);
+//        MiPushRegister.getPushCallback().onMessageThrough(message);
     }
 
     /**
@@ -68,7 +68,7 @@ public class MiPushMessageReceiverImpl extends PushMessageReceiver {
     public void onNotificationMessageArrived(Context context, MiPushMessage miPushMessage) {
         LogUtils.e("onNotificationMessageArrived : " + miPushMessage.toString());
         final Message message = buildMessage(miPushMessage);
-        MiPushRegister.getPushCallback().onMessage(message);
+//        MiPushRegister.getPushCallback().onMessage(message);
     }
 
     /**
@@ -80,7 +80,7 @@ public class MiPushMessageReceiverImpl extends PushMessageReceiver {
     public void onNotificationMessageClicked(Context context, MiPushMessage miPushMessage) {
         LogUtils.e("onNotificationMessageClicked : " + miPushMessage.toString());
         final Message message = buildMessage(miPushMessage);
-        MiPushRegister.getPushCallback().onMessageClicked(message);
+//        MiPushRegister.getPushCallback().onMessageClicked(message);
     }
 
     /**
