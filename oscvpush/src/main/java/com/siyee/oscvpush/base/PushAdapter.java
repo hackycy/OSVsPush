@@ -1,6 +1,5 @@
 package com.siyee.oscvpush.base;
 
-import com.siyee.oscvpush.model.Message;
 import com.siyee.oscvpush.model.Token;
 
 import java.util.List;
@@ -51,21 +50,6 @@ public class PushAdapter implements IPushCallback {
 
     @Override
     public void onGetTags(int resCode, List<String> tags) {
-
-    }
-
-    @Override
-    public void onMessage(Message msg) {
-
-    }
-
-    @Override
-    public void onMessageClicked(Message msg) {
-
-    }
-
-    @Override
-    public void onMessageThrough(Message msg) {
 
     }
 }
