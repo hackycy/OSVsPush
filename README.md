@@ -21,7 +21,7 @@ allprojects {
 implementation 'com.github.hackycy:OSVsPush:${版本号}'
 ```
 
-由于库中并不包含各大推送的sdk，请自行在github的**oscvpush**的[libs](https://github.com/hackycy/OSVsPush/tree/dev/oscvpush/libs)中的厂商推送sdk下载引入到自己的项目中。
+由于库中并不包含各大推送的sdk，请自行在github的**oscvpush**的[libs](https://github.com/hackycy/OSVsPush/tree/master/oscvpush/libs)中的厂商推送sdk下载引入到自己的项目中。
 
 并增加华为远程依赖包：
 
